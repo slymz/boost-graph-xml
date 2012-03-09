@@ -14,7 +14,6 @@
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/depth_first_search.hpp>
 #include <boost/graph/breadth_first_search.hpp>
-#include <boost/graph/leda_graph.hpp>
 #include <boost/iterator/iterator_adaptor.hpp>
 #include <boost/foreach.hpp>
 
@@ -174,77 +173,5 @@ namespace boost{
 }
 
 
-
-
-struct outputdoc 
-   : public boost::default_bfs_visitor
-{
-   void discover_vertex(const rapidxml::xml_node<>* u, const rapidxml::xml_document<>& )
-   {
-      std::cout << u->name() << std::endl;
-   }
-};
- 
-
-
-
-void rapidxmlgraph () {
-   char somedoc[] = {
-      "<n0>"
-      " <n00/>"
-      " <n01>"
-      "    <n010/>"
-      "    <n011>"
-      "       <n0110/>"
-      "       <n0111/>"
-      "       <n0112/>"
-      "       <n0113/>"
-      "    </n011>"
-      "    <n012/>"
-      " </n01>"
-      " <n02/>"
-      "</n0>"
-   };
-
-   using namespace boost;
-
-   rapidxml::xml_document<> doc;
-   doc.parse<0>( somedoc );
-
-   typedef graph_traits< rapidxml::xml_document<> >::in_edge_iterator iter;
-   typedef graph_traits< rapidxml::xml_document<> >::vertex_descriptor vert;
-   typedef graph_traits< rapidxml::xml_document<> >::edge_descriptor edge;
-
-   std::map< vert, default_color_type> colormap;
-   breadth_first_visit( doc, doc.first_node(),
-      boost::color_map( make_assoc_property_map(colormap) ).
-      visitor( outputdoc() ) );
-
-
-   std::map< vert, vert > predecessor_map;
-   typedef std::map<vert, default_color_type>::reference colormap_ref;
-   BOOST_FOREACH( colormap_ref c, colormap ) 
-      c.second = white_color;
-   
-
-   depth_first_visit( doc, doc.first_node(), 
-      make_dfs_visitor( 
-      record_predecessors( make_assoc_property_map(predecessor_map) , on_tree_edge() )
-      ), 
-      make_assoc_property_map(colormap)  );
-
-   std::cout << "\nAll edges?\n";
-   typedef std::map< vert, vert >::reference predecessor_map_ref;
-   BOOST_FOREACH( predecessor_map_ref p, predecessor_map )
-      std::cout << p.first->name() << "->" << p.second->name() << "\n";
-
-//       doc, 
-//       doc.first_node(), 
-//       outputdoc, 
-//       
-//       )
-
-   
-}
 
 #endif // BOOST_GRAPH_RAPIDXML_GRAPH_HPP_
