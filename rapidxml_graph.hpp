@@ -1,15 +1,24 @@
+//=======================================================================
+//                 Copyright (c) 2012 S. L. Yilmaz 
+//            Distributed under the MIT Software License. 
+//                See accompanying file LICENSE.txt.
+//=======================================================================
+
+#ifndef BOOST_GRAPH_RAPIDXML_GRAPH_HPP_
+#define BOOST_GRAPH_RAPIDXML_GRAPH_HPP_
+
 #include <boost/concept/requires.hpp>
 #include <boost/graph/graph_concepts.hpp>
 #include <boost/graph/visitors.hpp>
-#include <vector>
 #include <boost/graph/edge_list.hpp>
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/depth_first_search.hpp>
 #include <boost/graph/breadth_first_search.hpp>
+#include <boost/graph/leda_graph.hpp>
 #include <boost/iterator/iterator_adaptor.hpp>
 #include <boost/foreach.hpp>
 
-#include "rapidxml/rapidxml.hpp"
+#include <rapidxml/rapidxml.hpp>
 
 namespace boost{ 
 
@@ -237,3 +246,5 @@ void rapidxmlgraph () {
 
    
 }
+
+#endif // BOOST_GRAPH_RAPIDXML_GRAPH_HPP_
