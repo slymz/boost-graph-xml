@@ -7,15 +7,10 @@
 #ifndef BOOST_GRAPH_RAPIDXML_GRAPH_HPP_
 #define BOOST_GRAPH_RAPIDXML_GRAPH_HPP_
 
-#include <boost/concept/requires.hpp>
 #include <boost/graph/graph_concepts.hpp>
-#include <boost/graph/visitors.hpp>
 #include <boost/graph/edge_list.hpp>
 #include <boost/graph/adjacency_list.hpp>
-#include <boost/graph/depth_first_search.hpp>
-#include <boost/graph/breadth_first_search.hpp>
 #include <boost/iterator/iterator_adaptor.hpp>
-#include <boost/foreach.hpp>
 
 #include <rapidxml/rapidxml.hpp>
 
