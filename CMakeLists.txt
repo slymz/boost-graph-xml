@@ -6,10 +6,10 @@
 
 #
 # This CMake build is for tests only. You don't need to build or configure 
-# anything in order to use boost-graph-rapidxml, it is just a single header. 
+# anything in order to use boost-graph-xml, it is header only. 
 #
 
-project(BoostGraphRapidxml CXX)
+project(BoostGraphXml CXX)
 cmake_minimum_required( VERSION 2.8 ) 
 enable_testing()
 
